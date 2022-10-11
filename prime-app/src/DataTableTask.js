@@ -41,8 +41,7 @@ const DataTableTask = () => {
         const awaitDel = await productService.deleteProducts()
         console.log(awaitDel)
         if (awaitDel)
-            toast.current.show({severity: 'error', summary: '123Product Deleted', detail: '123'});
-
+            toast.current.show({severity: 'error', summary: 'Удаление пользователя', detail: 'Пользовтатель first_name last_name удален'});
         const newList = products.filter((p) => p.id !== product.id);
         setProducts(newList);
     }
@@ -62,10 +61,10 @@ const DataTableTask = () => {
          onContextMenuSelectionChange={e => setSelectedProduct(e.value)}
          onContextMenu={e => cm.current.show(e.originalEvent)} responsiveLayout="scroll"
         >
-            <Column field="id" sortable header="id"></Column>
-            <Column field="email" sortable header="email"></Column>
-            <Column field="first_name" sortable header="first_name"></Column>
-            <Column field="last_name" sortable header="last_name"></Column>
+            <Column field="id" sortable header="id" filter filterPlaceholder="Search by name"></Column>
+            <Column field="email" sortable header="email" filter filterPlaceholder="Search by name"></Column>
+            <Column field="first_name" sortable header="first_name" filter filterPlaceholder="Search by name"></Column>
+            <Column field="last_name" sortable header="last_name" filter filterPlaceholder="Search by name"></Column>
         </DataTable>     
         <Toast ref={toast} />  
         <ContextMenu model={menuModel} ref={cm} onHide={() => setSelectedProduct(null)}/>
